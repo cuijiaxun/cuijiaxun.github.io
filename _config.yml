@@ -1,7 +1,7 @@
 # Site settings
 title: ' '
 email: cuijiaxun_sjtu@163.com
-description: "Musings of a Computer Scientist."
+description: ""
 baseurl: ""
 url: "http://cuijiaxun.github.io"
 blogurl: "http://cuijiaxun.github.io/blog"
