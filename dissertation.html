@@ -4,26 +4,417 @@ title: Dissertation
 permalink: /dissertation/
 ---
 
-<h2>Dissertation</h2>
+<style>
+  /* Scoped styles for the dissertation landing page */
+  .diss-wrap { max-width: 920px; margin: 0 auto; }
 
-<p>
-Here you can find materials related to my PhD dissertation. If a final manuscript is available, it will be linked below.
-</p>
+  /* Hero */
+  .diss-hero {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    padding: 28px;
+    margin: 0 0 32px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f6f9ff 0%, #eef3ff 60%, #f9f5ff 100%);
+    border: 1px solid #e6ecf7;
+  }
+  .diss-hero__cover {
+    flex: 0 0 200px;
+  }
+  .diss-hero__cover img {
+    width: 200px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(20, 30, 70, 0.18);
+    background: #fff;
+    display: block;
+  }
+  .diss-hero__body { flex: 1 1 auto; min-width: 0; }
+  .diss-hero__eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 11px;
+    color: #4a5b8c;
+    background: #e3eaff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .diss-hero__title {
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 400;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+    color: #1a2240;
+  }
+  .diss-hero__meta {
+    color: #4d5570;
+    font-size: 15px;
+    margin: 0 0 16px;
+  }
+  .diss-hero__meta strong { color: #1a2240; font-weight: 500; }
 
-<ul>
-  <li>
-    <strong>Manuscript (PDF)</strong>:
-    <!-- Replace the href with the final file path when ready -->
-    <a href="/assets/jiaxun_cui_dissertation_final.pdf" target="_blank" rel="noopener">Download</a>
-  </li>
-  <li>
-    <strong>Defense slides</strong>:
-    <a href="/assets/jiaxun_cui_defense_slides.pptx" target="_blank" rel="noopener">View</a>
-  </li>
-</ul>
+  /* Action buttons */
+  .diss-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .diss-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .diss-btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .diss-btn--primary {
+    background: #2a4cd0;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(42, 76, 208, 0.25);
+  }
+  .diss-btn--primary:hover, .diss-btn--primary:visited { color: #fff; background: #1f3cb0; }
+  .diss-btn--ghost {
+    background: #fff;
+    color: #2a4cd0;
+    border-color: #c7d3f4;
+  }
+  .diss-btn--ghost:hover, .diss-btn--ghost:visited { color: #1f3cb0; }
+  .diss-btn svg { width: 14px; height: 14px; }
 
-<p>
-If you need an embargoed or draft copy, please contact me at cuijiaxun AT utexas DOT edu.
-</p>
+  /* Section blocks */
+  .diss-section { margin: 36px 0; }
+  .diss-section h2 {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 8px;
+    margin: 0 0 18px;
+  }
+  .diss-abstract p {
+    color: #2c3144;
+    line-height: 1.65;
+  }
+
+  /* Chapter / Part cards */
+  .diss-parts { display: flex; flex-direction: column; gap: 18px; }
+  .diss-part {
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    padding: 18px 20px;
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease;
+  }
+  .diss-part:hover {
+    border-color: #d6def4;
+    box-shadow: 0 6px 22px rgba(30, 50, 110, 0.07);
+  }
+  .diss-part__label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #6f7796;
+  }
+  .diss-part__title {
+    font-size: 18px;
+    margin: 4px 0 10px;
+    color: #1a2240;
+    font-weight: 500;
+  }
+  .diss-part__desc {
+    color: #444a63;
+    margin: 0 0 12px;
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .diss-chapters {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px dashed #e8ebf3;
+  }
+  .diss-chapters li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #e8ebf3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: baseline;
+  }
+  .diss-chapters li:last-child { border-bottom: none; }
+  .diss-ch__num {
+    font-size: 12px;
+    color: #6f7796;
+    flex: 0 0 auto;
+    min-width: 56px;
+  }
+  .diss-ch__title { color: #1a2240; font-weight: 500; }
+  .diss-ch__venue { color: #6f7796; font-size: 13px; }
+  .diss-ch__links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  .diss-ch__links a {
+    font-size: 13px;
+    color: #2a4cd0;
+    text-decoration: none;
+  }
+  .diss-ch__links a:hover { text-decoration: underline; }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .diss-hero { flex-direction: column; padding: 22px; }
+    .diss-hero__cover { flex: 0 0 auto; align-self: center; }
+    .diss-hero__cover img { width: 160px; height: 208px; }
+    .diss-hero__title { font-size: 22px; }
+  }
+</style>
+
+<div class="diss-wrap">
+
+  <!-- HERO -->
+  <section class="diss-hero">
+    <div class="diss-hero__cover">
+      <!-- Drop a real cover at /assets/dissertation_cover.png to replace the fallback. -->
+      <img src="/assets/dissertation_cover.png"
+           alt="Dissertation cover"
+           onerror="this.onerror=null; this.src='/assets/talkingvehicles.png';">
+    </div>
+    <div class="diss-hero__body">
+      <span class="diss-hero__eyebrow">Ph.D. Dissertation &middot; UT Austin</span>
+      <h1 class="diss-hero__title">
+        Communication and Generalization in Multi-Agent Learning
+      </h1>
+      <p class="diss-hero__meta">
+        <strong>Jiaxun Cui</strong> &middot; Electrical and Computer Engineering<br>
+        Advisor: <strong><a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a></strong><br>
+        The University of Texas at Austin, 2025
+      </p>
+
+      <div class="diss-actions">
+        <a class="diss-btn diss-btn--primary"
+           href="/assets/Jiaxun_Cui_Dissertation_final.pdf"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Manuscript (PDF)
+        </a>
+        <a class="diss-btn diss-btn--ghost"
+           href="/assets/jiaxun_cui_defense_slides.pptx"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          Defense Slides
+        </a>
+        <a class="diss-btn diss-btn--ghost" href="/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          Back to homepage
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABSTRACT -->
+  <section class="diss-section diss-abstract">
+    <h2>Abstract</h2>
+    <p>
+      Multi-agent learning aims to allow artificial intelligence (AI) agents to learn from
+      interactions with other agents in an environment. However, as AI increasingly integrates into
+      real-world systems, significant challenges arise in how to robustly interact with and
+      communicate with a variety of other agents, particularly in complex environments such as
+      autonomous driving, where humans and AI agents coexist. This dissertation research
+      investigates <strong>how agents can be trained to effectively communicate with and generalize
+      to diverse partners (including humans) in simulated real-world scenarios</strong>.
+    </p>
+    <p>
+      Towards addressing this challenge, this dissertation explores three key dimensions:
+      (1) learning communication-supporting representations that facilitate coordination,
+      (2) developing multi-agent policies that generalize to new teammates or opponents, and
+      (3) learning to collaborate with human-like agents or to use human language. This dissertation
+      makes novel contributions along each dimension.
+    </p>
+    <p>
+      First, the dissertation presents <strong>Coopernaut</strong>, a framework that learns
+      compact, transmittable representations from local observations to support communication
+      among autonomous vehicles under bandwidth constraints. It also introduces
+      <strong>LLM+Debrief</strong>, which enables embodied agents to coordinate in driving
+      scenarios by generating and interpreting natural language messages, paving the way for
+      human-compatible agent communication.
+    </p>
+    <p>
+      Second, it introduces <strong>MACTA</strong>, a reinforcement learning and game-theoretic
+      training framework that produces robust policies capable of generalizing to unseen and
+      adaptive opponents. In addition, <strong>L-BRDiv</strong> is introduced as a teammate
+      generation strategy that promotes behavioral diversity during training, improving
+      generalization and performance in ad hoc teamwork settings.
+    </p>
+    <p>
+      Third, the dissertation investigates <strong>mixed-autonomy traffic coordination</strong>
+      through decentralized training in environments with both human-proxy and AI agents.
+      Empirical results demonstrate that even a small number of trained autonomous vehicles can
+      collaborate effectively to influence human behavior and improve overall traffic efficiency
+      without requiring centralized control.
+    </p>
+    <p>
+      Collectively, these contributions advance multi-agent AI by unifying communication,
+      generalization, and human&ndash;AI collaboration. Evaluated in both toy domains and realistic
+      simulated environments, primarily focusing on autonomous driving and hardware security, the
+      work demonstrates how agents can adapt to novel partners and communicate effectively in
+      human-interpretable ways.
+    </p>
+  </section>
+
+  <!-- CHAPTER / PUBLICATION MAP -->
+  <section class="diss-section">
+    <h2>Structure</h2>
+
+    <div class="diss-parts">
+
+      <!-- PART I -->
+      <div class="diss-part">
+        <div class="diss-part__label">Part I</div>
+        <h3 class="diss-part__title">Background</h3>
+        <p class="diss-part__desc">
+          Motivation, contributions, and the formal foundations used throughout the dissertation
+          &mdash; MDPs, partially observable stochastic games, agent populations, and learning
+          objectives.
+        </p>
+        <ul class="diss-chapters">
+          <li>
+            <span class="diss-ch__num">Ch. 1</span>
+            <span class="diss-ch__title">Introduction</span>
+          </li>
+          <li>
+            <span class="diss-ch__num">Ch. 2</span>
+            <span class="diss-ch__title">Background and Notation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PART II -->
+      <div class="diss-part">
+        <div class="diss-part__label">Part II</div>
+        <h3 class="diss-part__title">Learning to Communicate</h3>
+        <p class="diss-part__desc">
+          From shared latent representations across networked vehicles to explicit natural-language
+          messages between agents driven by large language models.
+        </p>
+        <ul class="diss-chapters">
+          <li>
+            <span class="diss-ch__num">Ch. 3</span>
+            <span class="diss-ch__title">Learning to Communicate in Latent Representations</span>
+            <span class="diss-ch__venue">&middot; Coopernaut, CVPR 2022</span>
+            <span class="diss-ch__links">
+              <a href="https://arxiv.org/abs/2205.02222" target="_blank" rel="noopener">paper</a>
+              <a href="https://ut-austin-rpl.github.io/Coopernaut/" target="_blank" rel="noopener">project</a>
+              <a href="https://github.com/UT-Austin-RPL/Coopernaut" target="_blank" rel="noopener">code</a>
+            </span>
+          </li>
+          <li>
+            <span class="diss-ch__num">Ch. 4</span>
+            <span class="diss-ch__title">Learning to Communicate in Natural Language</span>
+            <span class="diss-ch__venue">&middot; CoopReflect, AAMAS 2026</span>
+            <span class="diss-ch__links">
+              <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=SwEYj9YAAAAJ&amp;citation_for_view=SwEYj9YAAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener">paper</a>
+              <a href="https://talking-vehicles.github.io/" target="_blank" rel="noopener">project</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PART III -->
+      <div class="diss-part">
+        <div class="diss-part__label">Part III</div>
+        <h3 class="diss-part__title">Learning to Generalize</h3>
+        <p class="diss-part__desc">
+          Training pipelines and theoretical tools that produce agents which remain robust when
+          deployed with unseen co-players &mdash; both adversarial opponents and cooperative
+          teammates.
+        </p>
+        <ul class="diss-chapters">
+          <li>
+            <span class="diss-ch__num">Ch. 5</span>
+            <span class="diss-ch__title">Generalizing to Adversarial Opponents</span>
+            <span class="diss-ch__venue">&middot; MACTA, ICLR 2023</span>
+            <span class="diss-ch__links">
+              <a href="https://openreview.net/forum?id=CDlHZ78-Xzi" target="_blank" rel="noopener">paper</a>
+              <a href="https://github.com/facebookresearch/macta" target="_blank" rel="noopener">code</a>
+            </span>
+          </li>
+          <li>
+            <span class="diss-ch__num">Ch. 6</span>
+            <span class="diss-ch__title">Generalizing to Cooperative Teammates</span>
+            <span class="diss-ch__venue">&middot; L-BRDiv / Minimum Coverage Sets, AAAI 2024</span>
+            <span class="diss-ch__links">
+              <a href="https://openreview.net/forum?id=CDlHZ78-Xzi" target="_blank" rel="noopener">paper</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PART IV -->
+      <div class="diss-part">
+        <div class="diss-part__label">Part IV</div>
+        <h3 class="diss-part__title">Learning with Human Proxies</h3>
+        <p class="diss-part__desc">
+          Centralized, modular-transfer, and distributed multi-agent driving policies that
+          coordinate with rule-based human-proxy traffic to dissolve stop-and-go congestion in
+          mixed-autonomy highways.
+        </p>
+        <ul class="diss-chapters">
+          <li>
+            <span class="diss-ch__num">Ch. 7</span>
+            <span class="diss-ch__title">Collaborating with Human Proxies</span>
+            <span class="diss-ch__venue">&middot; Scalable Multiagent Driving, AAMAS 2021 (Oral)</span>
+            <span class="diss-ch__links">
+              <a href="https://arxiv.org/abs/2103.00058" target="_blank" rel="noopener">paper</a>
+              <a href="https://github.com/cuijiaxun/MITC-Project" target="_blank" rel="noopener">code</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PART V -->
+      <div class="diss-part">
+        <div class="diss-part__label">Part V</div>
+        <h3 class="diss-part__title">Related and Future Work</h3>
+        <p class="diss-part__desc">
+          Connections to the broader literature, open problems, and a roadmap toward super-human
+          Pok&eacute;mon AI, open-ended ad hoc teamwork, multi-agent strategic reasoning for LLMs,
+          and multi-agent collaboration safety.
+        </p>
+        <ul class="diss-chapters">
+          <li>
+            <span class="diss-ch__num">Ch. 8</span>
+            <span class="diss-ch__title">Related Work</span>
+          </li>
+          <li>
+            <span class="diss-ch__num">Ch. 9</span>
+            <span class="diss-ch__title">Future Work</span>
+          </li>
+          <li>
+            <span class="diss-ch__num">Ch. 10</span>
+            <span class="diss-ch__title">Conclusion</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
 
 
+</div>
