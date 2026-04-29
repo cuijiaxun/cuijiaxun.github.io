@@ -19,18 +19,6 @@ permalink: /dissertation/
     background: linear-gradient(135deg, #f6f9ff 0%, #eef3ff 60%, #f9f5ff 100%);
     border: 1px solid #e6ecf7;
   }
-  .diss-hero__cover {
-    flex: 0 0 200px;
-  }
-  .diss-hero__cover img {
-    width: 200px;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 12px 28px rgba(20, 30, 70, 0.18);
-    background: #fff;
-    display: block;
-  }
   .diss-hero__body { flex: 1 1 auto; min-width: 0; }
   .diss-hero__eyebrow {
     display: inline-block;
@@ -166,9 +154,7 @@ permalink: /dissertation/
 
   /* Mobile */
   @media (max-width: 640px) {
-    .diss-hero { flex-direction: column; padding: 22px; }
-    .diss-hero__cover { flex: 0 0 auto; align-self: center; }
-    .diss-hero__cover img { width: 160px; height: 208px; }
+    .diss-hero { padding: 22px; }
     .diss-hero__title { font-size: 22px; }
   }
 </style>
@@ -177,12 +163,6 @@ permalink: /dissertation/
 
   <!-- HERO -->
   <section class="diss-hero">
-    <div class="diss-hero__cover">
-      <!-- Drop a real cover at /assets/dissertation_cover.png to replace the fallback. -->
-      <img src="/assets/dissertation_cover.png"
-           alt="Dissertation cover"
-           onerror="this.onerror=null; this.src='/assets/talkingvehicles.png';">
-    </div>
     <div class="diss-hero__body">
       <span class="diss-hero__eyebrow">Ph.D. Dissertation &middot; UT Austin</span>
       <h1 class="diss-hero__title">
